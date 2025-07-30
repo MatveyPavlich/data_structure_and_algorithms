@@ -18,6 +18,29 @@ struct stack init(){
 	return initial_stack;
 };
 
+int peek(struct stack *s){
+	if(s -> size > 0){
+		return s -> top -> value;
+	} else{
+		printf("Invalid peek operation! Put something onto the stack");
+		return -1;
+	}
+
+}
+
+int pop(struct stack *s){
+	if(s -> size > 0){
+		int val = s -> top -> value;
+		s -> top = s -> top -> next;
+		s -> size--;
+
+		return val;
+	} else{
+		printf("Invalid pop operation");
+		return -1;
+	}
+}
+
 void push(struct stack *s, int val){
 	struct node *newNode = malloc(sizeof(struct node));
 	if (s->size == 0){
@@ -33,7 +56,8 @@ void push(struct stack *s, int val){
 
 		s -> size++;
 	}
-	printf("%d\n", s -> top -> value);
+	// printf("%d\n", s -> top -> value); // Before peek was implemented
+	printf("%d\n", peek(s));
 };
 
 int main(void){
@@ -58,6 +82,8 @@ int main(void){
 	struct stack my_first_stack = init();
 	push(&my_first_stack, 1);
 	push(&my_first_stack, 2);
+	pop(&my_first_stack);
+	printf("%d\n", peek(&my_first_stack));
 
 	return 0;
 }
