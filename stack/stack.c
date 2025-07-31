@@ -18,26 +18,28 @@ struct stack init(){
 	return initial_stack;
 };
 
-int peek(struct stack *s){
+void peek(struct stack *s){
 	if(s -> size > 0){
-		return s -> top -> value;
+		int val = s -> top -> value;
+		printf("Peek: %d\n", val);
+		return;
 	} else{
 		printf("Invalid peek operation! Put something onto the stack");
-		return -1;
+		return;
 	}
 
 }
 
-int pop(struct stack *s){
+void pop(struct stack *s){
 	if(s -> size > 0){
 		int val = s -> top -> value; // Save poped value into new val variable
 		s -> top = s -> top -> next; // Update stack to the node BELOW
 		s -> size--;
-
-		return val;
+		printf("Pop: %d\n", val);
+		return;
 	} else{
 		printf("Invalid pop operation");
-		return -1;
+		return;
 	}
 }
 
@@ -55,10 +57,38 @@ void push(struct stack *s, int val){
 	}
 	
 	s -> size++;
+	printf("Push: %d\n", val);
 	
-	// printf("%d\n", s -> top -> value); // Before peek was implemented
-	printf("%d\n", peek(s));
+	return;
 };
+
+
+void app_loop(){
+	
+	int return_value = 0;
+	
+	while (return_value = 0){
+		opperation_select();
+		perform_opperation();
+	}
+
+
+};
+
+
+int opperation_select(){
+	char[] opperations = {"1", "2", "3", "0"};
+	char input;
+
+	printf("Select opperation: 1. Push 2. Peek 3.Pop 0. Exit\n");
+	printf("Opperationn: ");
+	scanf();
+
+	for (i = 0; i++; len){
+		if(opperations[i] == input){
+			return
+		}else{
+
 
 int main(void){
 	
@@ -83,7 +113,8 @@ int main(void){
 	push(&my_first_stack, 1);
 	push(&my_first_stack, 2);
 	pop(&my_first_stack);
-	printf("%d\n", peek(&my_first_stack));
-
+	push(&my_first_stack, 10);
+	push(&my_first_stack, 4);
+	
 	return 0;
 }
