@@ -30,8 +30,8 @@ int peek(struct stack *s){
 
 int pop(struct stack *s){
 	if(s -> size > 0){
-		int val = s -> top -> value;
-		s -> top = s -> top -> next;
+		int val = s -> top -> value; // Save poped value into new val variable
+		s -> top = s -> top -> next; // Update stack to the node BELOW
 		s -> size--;
 
 		return val;
@@ -43,19 +43,19 @@ int pop(struct stack *s){
 
 void push(struct stack *s, int val){
 	struct node *newNode = malloc(sizeof(struct node));
+	newNode -> value = val;
+	
 	if (s->size == 0){
-		newNode -> value = val;
 		newNode -> next = NULL;
-
 		s -> top = newNode;
-		s -> size++;
+
 	} else{
-		newNode -> value = val;
 		newNode -> next = s -> top;
 		s -> top = newNode;
-
-		s -> size++;
 	}
+	
+	s -> size++;
+	
 	// printf("%d\n", s -> top -> value); // Before peek was implemented
 	printf("%d\n", peek(s));
 };
