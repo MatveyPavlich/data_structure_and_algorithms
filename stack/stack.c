@@ -53,12 +53,7 @@ void app_loop(struct stack *s) {
 
 	while (running) {
 		int choice;
-		printf("\nChoose operation:\n");
-		printf("1. Push\n");
-		printf("2. Peek\n");
-		printf("3. Pop\n");
-		printf("0. Exit\n");
-		printf("Choice: ");
+		printf("\nChoose operation: (1) Push (2) Peek (3) Pop (0) Exit\n");
 		scanf("%d", &choice);
 
 		switch (choice) {
