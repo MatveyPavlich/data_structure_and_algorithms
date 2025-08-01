@@ -47,7 +47,7 @@ void push(struct stack *s, int val) {
 	printf("Push: %d\n", val);
 }
 
-// 🧠 Main loop
+
 void app_loop(struct stack *s) {
 	int running = 1;
 
