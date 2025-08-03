@@ -54,11 +54,32 @@ void dequeue(struct queue *q){
     }
 }
 
+void peek_front(struct queue *q){
+    if(q->queue_size > 0){
+        int front_val = q->first_node->value;
+        printf("Peek front: %d\n", front_val);
+    }else{
+        printf("Peek: ERROR, queue is empty\n");
+    }
+}
+
+void peek_back(struct queue *q){
+    if(q->queue_size > 0){
+        int back_val = q->last_node->value;
+        printf("Peek back: %d\n", back_val);
+    }else{
+        printf("Peek: ERROR, queue is empty\n");
+    }
+}
+
 int main(){
     struct queue my_queue = init();
     enqueue(&my_queue, 2);
     enqueue(&my_queue, 5);
+    enqueue(&my_queue, 50);
     dequeue(&my_queue);
+    peek_front(&my_queue);
+    peek_back(&my_queue);
 
     return 0;
 }
