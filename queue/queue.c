@@ -48,6 +48,11 @@ void dequeue(struct queue *q){
         q->first_node = q->first_node->next_node;
         free(dequed_node); // Make sure you free the memory you mallocced. Otherwise memo leak
         q->queue_size--;
+
+        if(q->queue_size == 0){
+            q->last_node = NULL; // Prevent dangling pointers
+        }
+
         printf("Dequeue: %d\n", dequeued_val);
     }else {
         printf("Dequeue: ERROR, queue is empty\n");
