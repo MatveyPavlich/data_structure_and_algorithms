@@ -38,15 +38,27 @@ void enqueue(struct queue *q, int pushed_val){
     }
 
     q->queue_size++;
-    printf("Push: %d\n", pushed_val);
+    printf("Enqueue: %d\n", pushed_val);
 }
 
-
+void dequeue(struct queue *q){
+    if(q->queue_size > 0){
+        struct node *dequed_node = q->first_node;
+        int dequeued_val = dequed_node->value;
+        q->first_node = q->first_node->next_node;
+        free(dequed_node); // Make sure you free the memory you mallocced. Otherwise memo leak
+        q->queue_size--;
+        printf("Dequeue: %d\n", dequeued_val);
+    }else {
+        printf("Dequeue: ERROR, queue is empty\n");
+    }
+}
 
 int main(){
     struct queue my_queue = init();
     enqueue(&my_queue, 2);
     enqueue(&my_queue, 5);
+    dequeue(&my_queue);
 
     return 0;
 }
