@@ -1,5 +1,6 @@
 /*==== Implementation of the Binary Search Tree (BSA) ====*/
-
+// Implemented using linked nodes (not arrays)
+// Tree height: log(n) <= h <= n
 
 #include <stdio.h>
 #include <stddef.h>
@@ -40,10 +41,12 @@ struct binary_tree init(){
 // }
 
 void insert(struct binary_tree *b, int val){
+    // First step should be to check if the value already exists => use search(). If it does => do not insert
+    
     struct node *new_node = malloc(sizeof(struct node));
+    // new_node = (struct node *)malloc(sizeof(struct node));
     new_node->value = val;
-    new_node->left = NULL;
-    new_node->right = NULL;
+    new_node->left = new_node->right = NULL;
 
     struct node *current = b->root;
 
@@ -78,6 +81,48 @@ void insert(struct binary_tree *b, int val){
     }
 
 }
+
+
+// WIP: iplementing searching an element
+void serarch(struct binary_tree *b, int val){
+
+    struct node *current_node = b->root;
+    if(current_node->value == NULL){
+        printf("Search: fail, tree is empty.");
+        return;
+    }
+    if(val == current_node->value){
+        printf("Search: element found.");
+    }
+}
+
+struct node* recursive_search(struct node *n, int val){
+    if(n->value == NULL){
+        printf("Search: fail, tree is empty.");
+        return NULL;
+    }
+    if(val == n->value){
+        printf("Search: element found.");
+        return n;
+    }
+    if(val < n->value){
+        return recursive_search(n->left, val);
+    }
+    else {
+        return recursive_search(n->right, val);
+    }
+}
+
+void remove(struct binary_tree *b, int val){
+    
+    struct node *current_node = b->root;
+
+    
+    // Find correct node
+    // Remove it
+    // Re-built a tree
+}
+
 
 
 int main(){
