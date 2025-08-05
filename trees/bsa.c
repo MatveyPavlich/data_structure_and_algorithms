@@ -85,6 +85,58 @@ void insert(struct binary_tree *b, int val){
 
 }
 
+struct node* find_min(struct node* n) {
+    while (n->left != NULL) {
+        n = n->left;
+    }
+    return n;
+}
+
+struct node* remove_node(struct node* root, int val) {
+    if (root == NULL) return NULL;
+
+    if (val < root->value) {
+        root->left = remove_node(root->left, val);
+    } else if (val > root->value) {
+        root->right = remove_node(root->right, val);
+    } else {
+        // Found the node to delete
+
+        // Case 1: No children
+        if (root->left == NULL && root->right == NULL) {
+            free(root);
+            return NULL;
+        }
+
+        // Case 2: One child
+        else if (root->left == NULL) {
+            struct node* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL) {
+            struct node* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // Case 3: Two children
+        else {
+            struct node* successor = find_min(root->right);
+            root->value = successor->value;
+            root->right = remove_node(root->right, successor->value);
+        }
+    }
+
+    return root;
+}
+
+void remove_value(struct binary_tree *b, int val) {
+    b->root = remove_node(b->root, val);
+    printf("Remove: %d attempted.\n", val);
+}
+
+
 int main(){
     struct binary_tree tree = init();
 
@@ -100,6 +152,8 @@ int main(){
     } else {
         printf("Main: search failure\n");
     }
+
+    remove_value(&tree, 20);
 
     return 0;
 }
