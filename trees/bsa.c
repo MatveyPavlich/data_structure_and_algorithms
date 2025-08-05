@@ -22,26 +22,33 @@ struct binary_tree init(){
     return b;
 }
 
-// struct node* recursion(struct node *current_node, struct node *new_node, int val){
-//     if(val < current_node->value){
-//         if(current_node->left == NULL){
-//             current_node->left = new_node;
-//             current_node = new_node;
-//         }else{
-//             current_node = current_node->left;
-//         }
-//     }else{
-//         if(current_node->right == NULL){
-//             current_node->right = new_node;
-//             current_node = new_node;
-//         }
-//         current_node = current_node->right;
-//     }
-//     return current_node;
-// }
+
+
+struct node* search(struct binary_tree *b, int val) {
+    struct node *current_node = b->root;
+
+    while (current_node != NULL) {
+        if (val == current_node->value) {
+            printf("Search: %d found in tree.\n", val);
+            return current_node;
+        } else if (val < current_node->value) {
+            current_node = current_node->left;
+        } else {
+            current_node = current_node->right;
+        }
+    }
+
+    printf("Search: %d not found in tree.\n", val);
+    return NULL;
+}
+
 
 void insert(struct binary_tree *b, int val){
-    // First step should be to check if the value already exists => use search(). If it does => do not insert
+    
+    if (search(b, val) != NULL) {
+        printf("Insert: %d already exists, skipping insert.\n", val);
+        return;
+    }
     
     struct node *new_node = malloc(sizeof(struct node));
     // new_node = (struct node *)malloc(sizeof(struct node));
@@ -55,10 +62,6 @@ void insert(struct binary_tree *b, int val){
         printf("Insert: %d is the first value\n", val);
         return;
     }
-    
-    // while(current_node != new_node){
-    //     struct node *current_node = recursion(current_node, new_node, val);
-    // }
 
     while (1) {
         if (val < current->value) {
@@ -82,55 +85,63 @@ void insert(struct binary_tree *b, int val){
 
 }
 
-
-// WIP: iplementing searching an element
-void serarch(struct binary_tree *b, int val){
-
-    struct node *current_node = b->root;
-    if(current_node->value == NULL){
-        printf("Search: fail, tree is empty.");
-        return;
-    }
-    if(val == current_node->value){
-        printf("Search: element found.");
-    }
-}
-
-struct node* recursive_search(struct node *n, int val){
-    if(n->value == NULL){
-        printf("Search: fail, tree is empty.");
-        return NULL;
-    }
-    if(val == n->value){
-        printf("Search: element found.");
-        return n;
-    }
-    if(val < n->value){
-        return recursive_search(n->left, val);
-    }
-    else {
-        return recursive_search(n->right, val);
-    }
-}
-
-void remove(struct binary_tree *b, int val){
-    
-    struct node *current_node = b->root;
-
-    
-    // Find correct node
-    // Remove it
-    // Re-built a tree
-}
-
-
-
 int main(){
     struct binary_tree tree = init();
+
     insert(&tree, 5);
     insert(&tree, 3);
     insert(&tree, 20);
     insert(&tree, 25);
+    insert(&tree, 3);  // This should be skipped
+
+    struct node *found = search(&tree, 20);
+    if (found) {
+        printf("Main: search success — value: %d\n", found->value);
+    } else {
+        printf("Main: search failure\n");
+    }
+
     return 0;
 }
 
+
+
+// WIP: iplementing searching an element
+// void serarch(struct binary_tree *b, int val){
+
+//     struct node *current_node = b->root;
+//     if(current_node == NULL){
+//         printf("Search: fail, tree is empty.");
+//         return;
+//     }
+//     if(val == current_node->value){
+//         printf("Search: element found.");
+//     }
+// }
+
+// struct node* recursive_search(struct node *n, int val){
+//     if(n == NULL){
+//         printf("Search: fail, tree is empty.");
+//         return NULL;
+//     }
+//     if(val == n->value){
+//         printf("Search: element found.");
+//         return n;
+//     }
+//     if(val < n->value){
+//         return recursive_search(n->left, val);
+//     }
+//     else {
+//         return recursive_search(n->right, val);
+//     }
+// }
+
+// void remove(struct binary_tree *b, int val){
+    
+//     struct node *current_node = b->root;
+
+    
+//     // Find correct node
+//     // Remove it
+//     // Re-built a tree
+// }
