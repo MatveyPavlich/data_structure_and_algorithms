@@ -5,13 +5,14 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include "tree_draw.c"
 
 
-struct node {
-    struct node *left;   // left child
-    struct node *right;  // right child
-    int value;
-};
+// struct node {
+//     struct node *left;   // left child
+//     struct node *right;  // right child
+//     int value;
+// };
 
 struct binary_tree {
     struct node *root;
@@ -144,7 +145,13 @@ int main(){
     insert(&tree, 3);
     insert(&tree, 20);
     insert(&tree, 25);
-    insert(&tree, 3);  // This should be skipped
+    insert(&tree, 30);
+    insert(&tree, 0);
+    insert(&tree, 4);
+    insert(&tree, 99);
+    insert(&tree, 100);
+    insert(&tree, 1);
+    insert(&tree, 2);  // This should be skipped
 
     struct node *found = search(&tree, 20);
     if (found) {
@@ -155,10 +162,10 @@ int main(){
 
     remove_value(&tree, 20);
 
+    print_ascii_tree(tree.root);
+
     return 0;
 }
-
-
 
 // WIP: iplementing searching an element
 // void serarch(struct binary_tree *b, int val){
