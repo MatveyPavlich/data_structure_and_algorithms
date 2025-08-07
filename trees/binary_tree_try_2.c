@@ -32,12 +32,10 @@ void insert(struct BinaryTree *b, int val){
 			return; 
 		}
 		else if(val < current_node->value){
-			current_node = current_node->left;
-			return;
+			current_node = current_node->left;	
 		}
 		else if(val > current_node->value){
-			current_node = current_node->right;
-			return;
+			current_node = current_node->right;	
 		}
 		else {
 			printf("insert(): error");
@@ -47,11 +45,18 @@ void insert(struct BinaryTree *b, int val){
 }
 
 
+void search(){
+	// TODO: Implement search
+}
+
+
 int main(){
     // printf("All good");
 	
 	struct BinaryTree tree = init();
 	insert(&tree, 4);
+	insert(&tree, 6);
+	insert(&tree, 2);
 	
 	return 0;
 }
