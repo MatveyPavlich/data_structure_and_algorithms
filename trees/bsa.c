@@ -146,11 +146,11 @@ int main(){
     insert(&tree, 20);
     insert(&tree, 25);
     insert(&tree, 30);
-    insert(&tree, 0);
     insert(&tree, 4);
     insert(&tree, 99);
     insert(&tree, 100);
     insert(&tree, 1);
+    insert(&tree, 0);
     insert(&tree, 2);  // This should be skipped
 
     struct node *found = search(&tree, 20);
