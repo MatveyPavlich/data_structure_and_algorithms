@@ -2,26 +2,26 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-struct Node {
+typedef struct Node {
     struct Node *left;
     struct Node *right;
     int value;
-};
+} Node;
 
 
-struct BinaryTree {
-    struct Node *root;
-};
+typedef struct {
+    Node *root;
+} BinaryTree;
 
 
-struct BinaryTree init(){
-	struct BinaryTree init_tree = {NULL};
+BinaryTree init(){
+	BinaryTree init_tree = {NULL};
 	return init_tree;
 };
 
 
-struct Node* search(struct BinaryTree *b, int val){	
-	struct Node *current_node = b->root;
+Node* search(BinaryTree *b, int val){	
+	Node *current_node = b->root;
 	
 	while(current_node != NULL){
 		if(val == current_node->value){
@@ -40,11 +40,11 @@ struct Node* search(struct BinaryTree *b, int val){
 
 
 
-void insert(struct BinaryTree *b, int val){
-	struct Node *new_node = malloc(sizeof(struct Node));
+void insert(BinaryTree *b, int val){
+	Node *new_node = malloc(sizeof(Node));
 	new_node->value = val;
 	new_node->left = new_node->right = NULL;
-	struct Node *current_node = b->root;
+	Node *current_node = b->root;
 
 	if(search(b, val) != NULL){
 		printf("Search: %d is already in the tree\n", val);
@@ -74,7 +74,7 @@ void insert(struct BinaryTree *b, int val){
 int main(){
     // printf("All good");
 	
-	struct BinaryTree tree = init();
+	BinaryTree tree = init();
 	insert(&tree, 4);
 	insert(&tree, 6);
 	insert(&tree, 2);
