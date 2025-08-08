@@ -19,11 +19,37 @@ struct BinaryTree init(){
 	return init_tree;
 };
 
+
+struct Node* search(struct BinaryTree *b, int val){	
+	struct Node *current_node = b->root;
+	
+	while(current_node != NULL){
+		if(val == current_node->value){
+			// printf("Search: %d\n", val);
+			return current_node;
+		}
+		else if(val < current_node->value){
+			current_node = current_node->left;
+		}
+		else if(val > current_node->value){
+			current_node = current_node->right;
+		}
+	}
+	return NULL;
+}
+
+
+
 void insert(struct BinaryTree *b, int val){
 	struct Node *new_node = malloc(sizeof(struct Node));
 	new_node->value = val;
 	new_node->left = new_node->right = NULL;
 	struct Node *current_node = b->root;
+
+	if(search(b, val) != NULL){
+		printf("Search: %d is already in the tree\n", val);
+		return;
+	}
 
 	while(1){
 		if(current_node == NULL){
@@ -45,30 +71,6 @@ void insert(struct BinaryTree *b, int val){
 }
 
 
-void search(struct BinaryTree *b, int val){
-	// TODO: Implement search
-	struct Node *current_node = b->root;
-	
-	while(1){
-		if(val == current_node->value){
-			printf("Search: %d\n", val);
-			return;
-		}
-		else if(val < current_node->value){
-			current_node = current_node->left;
-		}
-		else if(val > current_node->value){
-			current_node = current_node->right;
-		}
-		else {
-			printf("Search: errror, element doens't exist\n");
-		}
-
-	}
-	
-}
-
-
 int main(){
     // printf("All good");
 	
@@ -76,7 +78,8 @@ int main(){
 	insert(&tree, 4);
 	insert(&tree, 6);
 	insert(&tree, 2);
-	search(&tree, 2);
+	// search(&tree, 2);
+	insert(&tree,2);
 	
 	return 0;
 }
