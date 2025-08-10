@@ -65,10 +65,10 @@ void insert(LinkedList *l, int val){
     return;
 }
 
-// WIP
+
 void delete(LinkedList *l, int val){
-    if(l->length == 0){
-        printf("Delete: ERROR, linked list is empty.\n");
+    if(!l || l->length == 0){
+        printf("Delete: ERROR, linked list is not initialised or empty.\n");
         return;
     }
     
@@ -88,32 +88,50 @@ void delete(LinkedList *l, int val){
             printf("Delete: first element %d.\n", val);
         }
         free(current_node);
+        return;
     }
-    else if(current_node->next_node->value == val){
-        Node *delete_node = current_node->next_node;
-        
-        if(current_node->next_node == l->last_node){
-            current_node->next_node = current_node->next_node->next_node;
-            l->last_node = current_node;
-            printf("Delete: last element %d deleted.\n", val);
-        }
+    while(1){
+        if(current_node->next_node->value == val){
+            if(current_node->next_node == l->last_node){
+                free(current_node->next_node);
+                current_node->next_node = NULL;
+                l->last_node = current_node;
+                printf("Delete: last element %d deleted.\n", val);
+                return;
+            }
+            else{
+                Node *delete_node = current_node->next_node;
+                current_node->next_node = delete_node->next_node;
+                printf("Delete: middle element %d deleted.\n", delete_node->value);
+                free(delete_node);
+                return;
+            }
+        } // end if
         else{
-            current_node->next_node = delete_node->next_node;
-        }
-    }
-
-
-
-
-}
+            current_node = current_node->next_node;
+        } // end else
+    } // end while
+} // end delete
 
 
 int main(){
     LinkedList my_linked_list = init();
+    delete(&my_linked_list, 1);
+    
+    insert(&my_linked_list, 1);
+    delete(&my_linked_list, 1);
+    
+    insert(&my_linked_list, 1);
+    insert(&my_linked_list, 2);
+    delete(&my_linked_list, 1);
+
     insert(&my_linked_list, 1);
     insert(&my_linked_list, 2);
     insert(&my_linked_list, 4);
-    insert(&my_linked_list, 4);
+    insert(&my_linked_list, 5);
+    delete(&my_linked_list, 4);
+    delete(&my_linked_list, 5);
+
     return 0;
 }
 
