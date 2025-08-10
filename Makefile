@@ -15,3 +15,11 @@ clean:
 
 run:
 	$(BUILD_DIR)/linked_list_v2
+
+debug:
+	@gdb -q \
+	    -iex 'set auto-load local-gdbinit on' \
+	    -iex 'set auto-load safe-path $$debugdir:$$datadir/auto-load:$(PWD)' \
+	    ./$(BUILD_DIR)/linked_list_v2
+
+
