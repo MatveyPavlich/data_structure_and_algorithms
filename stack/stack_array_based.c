@@ -18,7 +18,7 @@ Stack initStack(void){
 }
 
 void push(Stack *s, int val){
-    if(s->stackSize == MaxStack - 1){
+    if(s->stackSize == MaxStack){
         printf("Push: stack overflow\n");
         exit(1);
     }
@@ -30,12 +30,26 @@ void push(Stack *s, int val){
     return;
 }
 
+void pop(Stack *s) {
+    if(s->stackSize == 0){
+        printf("Pop: ERROR. Stack is empty.\n");
+        return;
+    }
+
+    int poppedEl = s->stackData[s->stackTop];
+    --(s->stackSize);
+    --(s->stackTop);
+    printf("Pop: %d is removed from the stack.\n", poppedEl);
+    return;
+}
+
 
 int main(){
     Stack myStack = initStack();
     push(&myStack, 1);
     push(&myStack, 2);
     push(&myStack, 3);
+    pop(&myStack);
     push(&myStack, 4);
     return 0;
 }
