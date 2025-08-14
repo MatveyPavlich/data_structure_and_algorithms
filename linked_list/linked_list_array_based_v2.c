@@ -33,16 +33,21 @@ void insert(LinkedList *l, int val) {
     if(l->top == -1) {
         ++(l->top);
         l->data[l->top] = val;
+        l->next[l->top] = -1;  // Indicate no next element
     }
 
+    int current_node = l->next[l->top];
 
+    while (current_node != -1) {
+        current_node = l->next[current_node];
+    }
+    
+    
 
 }
 
 
-
 int main() {
-    printf("123");
 
     LinkedList l = init();
 
