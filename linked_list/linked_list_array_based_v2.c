@@ -46,9 +46,9 @@ void insert(LinkedList *l, int val) {
     l->next[slot] = -1;           // new tail has no next
 
     if (l->top == -1) {
-        // empty list -> this node becomes head
-        l->top = slot;
-    } else {
+        l->top = slot;            // empty list -> this node becomes head
+    }
+    else {
         // walk to current tail and link it to new node
         int cur = l->top;
         while (l->next[cur] != -1) cur = l->next[cur];
@@ -79,6 +79,7 @@ int deleteValue(LinkedList *l, int val) {
             if (prev == -1) {
                 // deleting head
                 l->top = l->next[cur];
+                printf("Delete: head deleted");
             } else {
                 l->next[prev] = l->next[cur];
             }
