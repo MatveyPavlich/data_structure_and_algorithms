@@ -13,12 +13,13 @@ main:
 	gcc -std=c99 -Wall -Werror ./linked_list/linked_list_array_based_v2.c -o ./$(BUILD_DIR)/linked_list_array_based_v2 -g
 	# gcc -std=c99 -Wall -Werror ./stack/stack_array_based.c -o ./$(BUILD_DIR)/stack_array_based -g
 	# gcc -std=c99 -Wall -Werror ./stack/stack_array_based_2.c -o ./$(BUILD_DIR)/stack_array_based_2 -g
+	gcc -std=c99 -Wall -Werror ./bitwise_operations/bitwise_operations.c -o ./$(BUILD_DIR)/bitwise_operations -g
 
 clean:
 	rm -rf $(BUILD_DIR)/*
 
 run:
-	$(BUILD_DIR)/linked_list_array_based_v2
+	$(BUILD_DIR)/bitwise_operations
 
 debug:
 	@gdb -q \
