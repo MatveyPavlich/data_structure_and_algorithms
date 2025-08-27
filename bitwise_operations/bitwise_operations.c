@@ -82,7 +82,15 @@ int main() {
 */
 
 
-// Array investigation
+/* ========================== Array investigation ========================== 
+** Notes: 
+**  - arr = &arr = &arr[0] (i.e., array label = a pointer to the first memo)
+**  - (arr + 1) != (&arr + 1) since compiler would thing you need to add a
+**    whole new array 
+**  - *arr = **&arr = *(arr) = arr[0]
+**  - arr[x] = *(arr + x)
+============================================================================
+
 int main(void) {
     int arr[] = {1,2,3};
 
@@ -100,5 +108,4 @@ int main(void) {
     printf("*(arr + 2) = %d\n", *(arr + 2));
     return 0;
 }
-
-// arr[x] = *(arr + x)
+============================================================================*/
