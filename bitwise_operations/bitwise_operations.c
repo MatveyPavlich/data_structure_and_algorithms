@@ -36,47 +36,51 @@ typedef struct node {
     struct node *prev_node; // 8 bytes (no shit, 64 bits)
 } Node;
 
-// int main() {
+/* 
+// ================ Binary shifts & masking ================
+int main() {
 
-//     // unsigned int num = 0xABCD;
-//     // int size = sizeof(Node);
-// 	// 0x0FFFu
-//     // int a = 1;
-//     // int a = 0x0FFFu;
-//     // unsigned int a = 1 << 12;
-//     // int a = 1 << 12;
-//     // printf("Size of int: %ld\n", sizeof(int));
-//     // printf("Node size: %d\n", size);
-//     // << 1 => *2
-//     // << 2 => *4
-//     // a |= 0x1 is an or operation => OR a, 0x1 (if a flag already set though then nothign happens)
-//     // 0xFFu => means unsigned int => e.g., a & 0xFFu != a & 0xFF
-//     // 0xFF => means just an int
-//     // 0xFF & 0xFFFFFF = 0xFF => equivalent to `AND 0xFF, 0xFFFFFF`
+    // unsigned int num = 0xABCD;
+    // int size = sizeof(Node);
+	// 0x0FFFu
+    // int a = 1;
+    // int a = 0x0FFFu;
+    // unsigned int a = 1 << 12;
+    // int a = 1 << 12;
+    // printf("Size of int: %ld\n", sizeof(int));
+    // printf("Node size: %d\n", size);
+    // << 1 => *2
+    // << 2 => *4
+    // a |= 0x1 is an or operation => OR a, 0x1 (if a flag already set though then nothign happens)
+    // 0xFFu => means unsigned int => e.g., a & 0xFFu != a & 0xFF
+    // 0xFF => means just an int
+    // 0xFF & 0xFFFFFF = 0xFF => equivalent to `AND 0xFF, 0xFFFFFF`
 
-//     int a = 0x8 | 0x2 |0x1;
-//     // int a = 0xFFF & 0xFFFFFFFF;
-//     print_binary(a);
-//     printf("0x%X\n", a); // 0x1234ABCD
-//     a |= 0x10;
-//     printf("a = %d\n", a);
-//     print_binary(a);
-//     printf("0x%X\n", a); // 0x1234ABCD
-//     a = a << 2;
-//     printf("a = %d\n", a);
-//     print_binary(a);
-//     printf("0x%X\n", a); // 0x1234ABCD
-//     a = a << 2;
-//     printf("a = %d\n", a);
-//     print_binary(a);
-//     printf("0x%X\n", a); // 0x1234ABCD
-//     // printf("Hex with prefix: 0x%X\n", num); // 0x1234ABCD
+    int a = 0x8 | 0x2 |0x1;
+    // int a = 0xFFF & 0xFFFFFFFF;
+    print_binary(a);
+    printf("0x%X\n", a); // 0x1234ABCD
+    a |= 0x10;
+    printf("a = %d\n", a);
+    print_binary(a);
+    printf("0x%X\n", a); // 0x1234ABCD
+    a = a << 2;
+    printf("a = %d\n", a);
+    print_binary(a);
+    printf("0x%X\n", a); // 0x1234ABCD
+    a = a << 2;
+    printf("a = %d\n", a);
+    print_binary(a);
+    printf("0x%X\n", a); // 0x1234ABCD
+    // printf("Hex with prefix: 0x%X\n", num); // 0x1234ABCD
 
-//     // printf("Binary of 0x%X:\n", num);
-//     // print_binary(num);
+    // printf("Binary of 0x%X:\n", num);
+    // print_binary(num);
 
-//     return 0;
-// }
+    return 0;
+}
+*/
+
 
 // Array investigation
 int main(void) {
