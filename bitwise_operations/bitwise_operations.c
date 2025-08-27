@@ -109,3 +109,34 @@ int main(void) {
     return 0;
 }
 ============================================================================*/
+
+/* ========================== Pointer investigation ========================== 
+** Notes: 
+**
+**
+**
+**
+**
+=============================================================================*/
+int main(void) {
+    char ch[] = "Hello\n";
+    char *b = &ch;
+
+    printf("b        = %p\n", (void*)b);
+    // printf("&a       = %p\n", (void*)&ch);
+
+    printf("++b      = %p\n", (void*)++b);
+    printf("b++      = %p\n", (void*)b++);
+    // printf("&arr       = %p\n", (void*)&arr);
+    // printf("&arr[0]    = %p\n", (void*)&arr[0]);
+
+    // printf("arr + 1    = %p\n", (void*)(arr + 1));    // one int ahead
+    // printf("&arr + 1   = %p\n", (void*)(&arr + 1));   // one whole array ahead
+
+    // printf("*arr       = %d\n", *arr);
+    // printf("**&arr     = %d\n", **&arr);
+    // printf("*(arr)     = %d\n", *(arr));
+    // printf("*(arr + 1) = %d\n", *(arr + 1));           
+    // printf("*(arr + 2) = %d\n", *(arr + 2));
+    return 0;
+}
