@@ -119,11 +119,11 @@ int main(void) {
 **
 =============================================================================*/
 int main(void) {
-    char ch[] = "Hello\n";
+    char ch = 'H';
     char *b = &ch;
 
     printf("b        = %p\n", (void*)b);
-    // printf("&a       = %p\n", (void*)&ch);
+    printf("&a       = %p\n", (void*)&ch);
 
     printf("++b      = %p\n", (void*)++b);
     printf("b++      = %p\n", (void*)b++);
