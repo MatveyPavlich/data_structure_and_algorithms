@@ -17,8 +17,38 @@ LinkedList intit_liked_list(void) {
     return (LinkedList) {0, NULL};
 }
 
+Node *search(LinkedList *l, int value){
+    if(l->length == 0) {
+        printf("Search: ERROR, list is empty\n");
+        return NULL;
+    }
+
+    Node *current_node = l->first_node;
+    while (current_node->val != value){
+        if(current_node->next_node == NULL) {
+            printf("Search: ERROR, %d not found\n", value);
+            return  NULL;
+        }
+        current_node = current_node->next_node;
+    }
+
+    printf("Search: element %d found\n", value);
+    return current_node;
+}
+
+
 void insert(LinkedList *l, int value){
+    if(search(l, value) != NULL) {
+        printf("Insert: ERROR, value already in the list\n");
+        return;
+    }
+
     Node *new_node = malloc(sizeof(Node));
+    if (!new_node) {
+        perror("Insert: malloc failed");
+        exit(EXIT_FAILURE);
+    }
+
     new_node->next_node = NULL;
     new_node->val = value;
 
@@ -36,24 +66,11 @@ void insert(LinkedList *l, int value){
     printf("Insert: %d\n", value);
 }
 
-int search(LinkedList *l, int value){
-    if(l->length == 0) {
-        printf("Search: ERROR, list is empty\n");
-        return 1;
-    }
 
-    Node *current_node = l->first_node;
-    while (current_node->val != value){
-        if(current_node->next_node == NULL) {
-            printf("Search: ERROR, %d not found\n", value);
-            return  1;
-        }
-        current_node = current_node->next_node;
-    }
+void delete(LinkedList *l, int value){
 
-    printf("Search: element %d found\n", value);
-    return 0;
 }
+
 
 int main(){
     printf("test initial files\n");
