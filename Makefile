@@ -9,18 +9,19 @@ main:
 	# gcc -std=c99 -Wall -Werror ./trees/binary_tree_try_2.c -o ./$(BUILD_DIR)/binary_tree_try_2
 	# gcc -std=c99 -Wall -Werror ./linked_list/linked_list.c -o ./$(BUILD_DIR)/linked_list
 	# gcc -std=c99 -Wall -Werror ./linked_list/linked_list_v2.c -o ./$(BUILD_DIR)/linked_list_v2 -g
-	gcc -std=c99 -Wall -Werror ./linked_list/linked_list_v3.c -o ./$(BUILD_DIR)/linked_list_v3 -g
+	# gcc -std=c99 -Wall -Werror ./linked_list/linked_list_v3.c -o ./$(BUILD_DIR)/linked_list_v3 -g
 	# gcc -std=c99 -Wall -Werror ./linked_list/linked_list_array_based.c -o ./$(BUILD_DIR)/linked_list_array_based -g
 	# gcc -std=c99 -Wall -Werror ./linked_list/linked_list_array_based_v2.c -o ./$(BUILD_DIR)/linked_list_array_based_v2 -g
 	# gcc -std=c99 -Wall -Werror ./stack/stack_array_based.c -o ./$(BUILD_DIR)/stack_array_based -g
 	# gcc -std=c99 -Wall -Werror ./stack/stack_array_based_2.c -o ./$(BUILD_DIR)/stack_array_based_2 -g
-	gcc -std=c99 -Wall -Werror ./bitwise_operations/bitwise_operations.c -o ./$(BUILD_DIR)/bitwise_operations -g
+	# gcc -std=c99 -Wall -Werror ./bitwise_operations/bitwise_operations.c -o ./$(BUILD_DIR)/bitwise_operations -g
+	gcc -std=c99 -Wall -Werror ./queue/queue_v2.c -o ./$(BUILD_DIR)/queue_v2 -g
 
 clean:
 	rm -rf $(BUILD_DIR)/*
 
 run:
-	$(BUILD_DIR)/linked_list_v3
+	$(BUILD_DIR)/queue_v2
 
 debug:
 	@gdb -q \
