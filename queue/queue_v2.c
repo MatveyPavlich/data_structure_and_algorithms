@@ -2,10 +2,11 @@
 #include "stdio.h"
 #include "stdlib.h"
 
+// TODO: Find an error. For some reason isertion of the duplicate number is successful
+
 typedef struct node {
     int value;
     struct node *next_node;
-
 } Node;
 
 typedef struct {
@@ -63,6 +64,39 @@ int insert(Queue *q, int val)
 
 }
 
+int delete(Queue *q, int val)
+{
+    Node *delete_node = search(q, val);
+    if(delete_node == NULL) {
+        printf("Delete: ERROR, element was not found\n");
+        return 1;
+    }
+    else if(delete_node == q->last_node){
+        // Last node to be deleted
+        q->last_node = delete_node->next_node;
+    }
+    else {
+        // Middle or head to be deleted
+        Node *current_node = q->last_node;
+        while(current_node->next_node != delete_node)
+            current_node = current_node->next_node;
+        
+        if(delete_node == q->front_node){
+            // Head node
+            current_node->next_node = NULL;
+            q->front_node = current_node;
+        }
+        else {
+            // Middle node
+            current_node->next_node = delete_node->next_node;
+        }
+        
+    }
+    free(delete_node);
+    --q->size;
+    return 0;
+}
+
 
 int main()
 {
@@ -70,5 +104,6 @@ int main()
     insert(&my_queue, 2);
     insert(&my_queue, 4);
     insert(&my_queue, 2);
+    delete(&my_queue, 4);
     return 0;
 }
