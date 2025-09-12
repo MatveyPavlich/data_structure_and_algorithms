@@ -27,15 +27,12 @@ Node *search(Queue *q, int val)
         return NULL;
 
     Node *current_node = q->last_node;
-    while(current_node->value != val){
-        if(current_node->next_node == q->front_node)
-            return NULL;
-        
+    while (current_node != NULL) {
+        if (current_node->value == val)
+            return current_node;
         current_node = current_node->next_node;
-    
     }
-
-    return current_node;
+    return NULL;
 
 } 
 
@@ -53,15 +50,15 @@ int insert(Queue *q, int val)
         q->front_node = q->last_node = new_node;
         new_node->next_node = NULL;
         printf("Insert: SUCCESS, %d is the first node\n", val);
-        return 0;
     }
     else {
         new_node->next_node = q->last_node;
         q->last_node = new_node;
         printf("Insert: SUCCESS, %d is the last node\n", val);
-        return 0;
     }
 
+    ++q->size;
+    return 0;
 }
 
 int delete(Queue *q, int val)
@@ -74,6 +71,7 @@ int delete(Queue *q, int val)
     else if(delete_node == q->last_node){
         // Last node to be deleted
         q->last_node = delete_node->next_node;
+        printf("Delete: SUCCESS, %d is deleted (last)\n", val);
     }
     else {
         // Middle or head to be deleted
@@ -85,10 +83,12 @@ int delete(Queue *q, int val)
             // Head node
             current_node->next_node = NULL;
             q->front_node = current_node;
+            printf("Delete: SUCCESS, %d is deleted (head)\n", val);
         }
         else {
             // Middle node
             current_node->next_node = delete_node->next_node;
+            printf("Delete: SUCCESS, %d is deleted (middle)\n", val);
         }
         
     }
@@ -104,6 +104,7 @@ int main()
     insert(&my_queue, 2);
     insert(&my_queue, 4);
     insert(&my_queue, 2);
+    insert(&my_queue, 3);
     delete(&my_queue, 4);
     return 0;
 }
