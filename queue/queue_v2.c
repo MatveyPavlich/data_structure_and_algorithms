@@ -1,8 +1,6 @@
-#include "stdint.h"
-#include "stdio.h"
-#include "stdlib.h"
-
-// TODO: Find an error. For some reason isertion of the duplicate number is successful
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node {
     int value;
