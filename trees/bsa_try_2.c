@@ -2,7 +2,58 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+typedef struct node {
+    int value;
+    struct node *left_child;
+    struct node *right_child;
+} Node;
+
+typedef struct {
+    Node *root;
+} BinaryTree;
+
+BinaryTree init()
+{
+    return (BinaryTree){NULL};
+}
+
+int insert(BinaryTree *b, int val)
+{
+    Node *new_node = malloc(sizeof(Node));
+    new_node->value = val;
+    new_node->left_child = new_node->right_child = NULL;
+
+    if(b->root == NULL){
+        b->root = new_node;
+        printf("Insert: root %d created\n", val);
+        return 0;
+    }
+
+    Node *current_node = b->root;
+    while(1){
+        if(current_node->value > val && current_node->left_child != NULL)
+            current_node = current_node->left_child;
+        else if(current_node->value > val){
+            current_node->right_child = new_node;
+            return 0;
+        }
+        else if(current_node->value < val && current_node->right_child != NULL)
+            current_node = current_node->right_child;
+        else if (current_node->value < val){
+            current_node->left_child = new_node;
+            return 0;
+        }
+        else
+            printf("Insert: ERROR unhandeled case\n");
+    }
+    printf("Insert: SUCCESS, %d was inserted\n", val);
+}
+
+
 int main()
 {
+    BinaryTree tree = init();
+    insert(&tree, 2);
+    insert(&tree, 4);
     printf("check\n");
 }
