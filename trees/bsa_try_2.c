@@ -34,19 +34,23 @@ int insert(BinaryTree *b, int val)
         if(current_node->value > val && current_node->left_child != NULL)
             current_node = current_node->left_child;
         else if(current_node->value > val){
-            current_node->right_child = new_node;
-            return 0;
+            current_node->left_child = new_node;
+            break;
         }
         else if(current_node->value < val && current_node->right_child != NULL)
             current_node = current_node->right_child;
         else if (current_node->value < val){
-            current_node->left_child = new_node;
+            current_node->right_child = new_node;
+            break;
+        }
+        else{
+            printf("Insert: ERROR unhandeled case\n");
             return 0;
         }
-        else
-            printf("Insert: ERROR unhandeled case\n");
+
     }
     printf("Insert: SUCCESS, %d was inserted\n", val);
+    return 0;
 }
 
 
@@ -55,5 +59,4 @@ int main()
     BinaryTree tree = init();
     insert(&tree, 2);
     insert(&tree, 4);
-    printf("check\n");
 }
