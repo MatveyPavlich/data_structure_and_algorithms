@@ -17,8 +17,31 @@ BinaryTree init()
     return (BinaryTree){NULL};
 }
 
+Node *search(BinaryTree *b, int val)
+{
+    Node *current_node = b->root;
+
+    while (current_node != NULL) {
+        if (current_node->value == val) {
+            return current_node;
+        } else if (val < current_node->value) {
+            current_node = current_node->left_child;
+        } else {
+            current_node = current_node->right_child;
+        }
+    }
+
+    return NULL; // not found
+}
+
+
 int insert(BinaryTree *b, int val)
 {
+    if(search(b, val) != NULL){
+        printf("Insert: ERROR, %d is already in the list\n", val);
+        return 1;
+    }
+
     Node *new_node = malloc(sizeof(Node));
     new_node->value = val;
     new_node->left_child = new_node->right_child = NULL;
@@ -58,5 +81,6 @@ int main()
 {
     BinaryTree tree = init();
     insert(&tree, 2);
+    insert(&tree, 4);
     insert(&tree, 4);
 }
