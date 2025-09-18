@@ -76,6 +76,16 @@ int insert(BinaryTree *b, int val)
     return 0;
 }
 
+void delete(BinaryTree *b, int val)
+{
+	Node *delete_node = search(b, val); 
+	if(delete_node == NULL){
+		printf("Delete: ERROR, %d is not in the tree\n", val);
+		return;
+	}
+	
+
+}
 
 int main()
 {
