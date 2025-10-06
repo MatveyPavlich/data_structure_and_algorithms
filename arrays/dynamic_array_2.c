@@ -3,6 +3,8 @@
 
 #define PAGE_SIZE 5
 
+// TODO: Add cases into insert() that would handle page generation
+
 typedef struct {
 	int page_number;
 	int *array;
@@ -25,7 +27,7 @@ int insert(DynamicArray *d, int val)
 	++(d->max_index);
 	printf("Insert: %d on position %d\n", val, d->max_index);
 	return 0;
-
+	// Installed arch on my 2nd laptop, so no coding today -_-
 }
 
 
