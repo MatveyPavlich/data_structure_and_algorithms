@@ -28,6 +28,7 @@ int insert(DynamicArray *d, int val)
 	printf("Insert: %d on position %d\n", val, d->max_index);
 	return 0;
 	// Installed arch on my 2nd laptop, so no coding today -_-
+	// Broke hyperland on my 2nd laptop, so no coding today -_-
 }
 
 
