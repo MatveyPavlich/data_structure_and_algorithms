@@ -1,34 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define PAGE_SIZE 5
+#define PAGE_SIZE 2
 
-// TODO: Add cases into insert() that would handle page generation
+// TODO: Implement delete
 
 typedef struct {
 	int page_number;
 	int *array;
-	int max_index;
+	int max_index; // -1 for empty
 } DynamicArray;
 
 DynamicArray init_array(void)
 {
 	DynamicArray d;
 	d.page_number = 1;
+	d.max_index = -1;
 	d.array = malloc(sizeof(int) * PAGE_SIZE);
-	if (d.array == NULL)
+	if (d.array == NULL){
+		perror("Malloc failed");
 		abort();
+	}
 	return d;
 }
 
 int insert(DynamicArray *d, int val)
 {
+	int capacity = PAGE_SIZE * d->page_number;
+	if(d->max_index + 1 == capacity){
+		++(d->page_number);
+		int new_capacity = capacity + PAGE_SIZE;
+		int *new_array = realloc(d->array, sizeof(int) * new_capacity);
+		if(new_array == NULL){
+			perror("Realloc failed");
+			abort();
+		}
+		d->array = new_array;
+		printf("New page allocated. Old capacity: %d; New capacity %d\n", capacity, new_capacity);
+	}
 	d->array[d->max_index + 1] = val;
 	++(d->max_index);
 	printf("Insert: %d on position %d\n", val, d->max_index);
 	return 0;
-	// Installed arch on my 2nd laptop, so no coding today -_-
-	// Broke hyperland on my 2nd laptop, so no coding today -_-
 }
 
 
