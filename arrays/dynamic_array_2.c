@@ -44,6 +44,21 @@ int insert(DynamicArray *d, int val)
 	return 0;
 }
 
+int search(DynamicArray* d, int value)
+{
+	int *array = d->array;
+	for(int i=0; i<=d->max_index; i++){
+		if(array[i] == value) return i;
+	}	
+	printf("Search: no match found for %d\n", value);
+	return -1;
+}
+
+
+// int delete(DynamicArray* d, int val)
+// {
+// 	return 0;
+// }
 
 int main(void)
 {
@@ -52,6 +67,7 @@ int main(void)
 	insert(&my_array, 5);
 	insert(&my_array, 3);
 	insert(&my_array, 4);
+	search(&my_array,4);
     	return 0;
 }
 
