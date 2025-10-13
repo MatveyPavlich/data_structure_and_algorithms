@@ -1,4 +1,6 @@
+// Test, test
 #include <stdio.h>
+
 #include <stdlib.h>
 
 #define PAGE_SIZE 2
@@ -55,10 +57,15 @@ int search(DynamicArray* d, int value)
 }
 
 
-// int delete(DynamicArray* d, int val)
-// {
-// 	return 0;
-// }
+int delete(DynamicArray* d, int val)
+{
+    int del_el_index = search(d, val);
+    if(del_el_index == -1) {
+        printf("Delete: ERROR, no such element found\n");
+        return 1;
+    }
+    return 0;
+}
 
 int main(void)
 {
@@ -68,6 +75,7 @@ int main(void)
 	insert(&my_array, 3);
 	insert(&my_array, 4);
 	search(&my_array,4);
-    	return 0;
+    delete(&my_array, 100);
+    return 0;
 }
 
