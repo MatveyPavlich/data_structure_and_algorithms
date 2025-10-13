@@ -6,6 +6,7 @@
 #define PAGE_SIZE 2
 
 // TODO: Implement delete
+// TODO; Add capacity into DynamicArray
 
 typedef struct {
 	int page_number;
@@ -59,11 +60,21 @@ int search(DynamicArray* d, int value)
 
 int delete(DynamicArray* d, int val)
 {
-    int del_el_index = search(d, val);
-    if(del_el_index == -1) {
+    // TODO: handle case where the whole page was deleted
+    int del_index = search(d, val);
+    if(del_index == -1) {
         printf("Delete: ERROR, no such element found\n");
         return 1;
     }
+
+    int *array = d->array;
+    array[del_index] = 0;
+    for(int i = del_index; i < d->max_index; i++)
+        array[i] = array[i+1];
+    
+    --(d->max_index);
+    printf("Delete: SUCCESS, %d was removed\n", val);
+
     return 0;
 }
 
@@ -76,6 +87,7 @@ int main(void)
 	insert(&my_array, 4);
 	search(&my_array,4);
     delete(&my_array, 100);
+    delete(&my_array, 4);
     return 0;
 }
 
