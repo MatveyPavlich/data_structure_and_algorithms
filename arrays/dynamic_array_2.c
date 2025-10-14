@@ -1,12 +1,13 @@
-// Test, test
+// Dynamic array for positive integers
+// An integer can occur a single time in the array
+
 #include <stdio.h>
 
 #include <stdlib.h>
 
 #define PAGE_SIZE 2
-
+#define MAGIC_NUMBER -9999
 // TODO: Implement delete
-// TODO; Add capacity into DynamicArray
 
 typedef struct {
 	int page_number;
@@ -27,8 +28,23 @@ DynamicArray init_array(void)
 	return d;
 }
 
+int search(DynamicArray* d, int value)
+{
+	int *array = d->array;
+	for(int i=0; i<=d->max_index; i++){
+		if(array[i] == value) return i;
+	}	
+	printf("Search: no match found for %d\n", value);
+	return MAGIC_NUMBER;
+}
+
 int insert(DynamicArray *d, int val)
 {
+    if(search(d, val) == MAGIC_NUMBER) {
+        printf("Insert: ERROR, %d is already in the array\n", val);
+        return 1;
+    }
+
 	int capacity = PAGE_SIZE * d->page_number;
 	if(d->max_index + 1 == capacity){
 		++(d->page_number);
@@ -45,16 +61,6 @@ int insert(DynamicArray *d, int val)
 	++(d->max_index);
 	printf("Insert: %d on position %d\n", val, d->max_index);
 	return 0;
-}
-
-int search(DynamicArray* d, int value)
-{
-	int *array = d->array;
-	for(int i=0; i<=d->max_index; i++){
-		if(array[i] == value) return i;
-	}	
-	printf("Search: no match found for %d\n", value);
-	return -1;
 }
 
 
@@ -88,6 +94,7 @@ int main(void)
 	search(&my_array,4);
     delete(&my_array, 100);
     delete(&my_array, 4);
+    insert(&my_array, 3);
     return 0;
 }
 
