@@ -25,11 +25,18 @@ DynamicArray init_array(void)
 		perror("Malloc failed");
 		abort();
 	}
+    
+    // Fill array with magic numbers that would indicate unused space
+    for(int i = 0; i < PAGE_SIZE; i++) {
+        d.array[i] = MAGIC_NUMBER;
+    }
+
 	return d;
 }
 
 int search(DynamicArray* d, int value)
 {
+    // MAGIC_NUMBER is returned on no match, else index of the match
 	int *array = d->array;
 	for(int i=0; i<=d->max_index; i++){
 		if(array[i] == value) return i;
@@ -40,7 +47,8 @@ int search(DynamicArray* d, int value)
 
 int insert(DynamicArray *d, int val)
 {
-    if(search(d, val) == MAGIC_NUMBER) {
+    // Retrn: 0 on success, 1 on fail
+    if(search(d, val) != MAGIC_NUMBER) {
         printf("Insert: ERROR, %d is already in the array\n", val);
         return 1;
     }
@@ -63,12 +71,16 @@ int insert(DynamicArray *d, int val)
 	return 0;
 }
 
+int empty_page_check()
+{
+    // TODO: complete this function to be used in the delete()
+}
 
 int delete(DynamicArray* d, int val)
 {
     // TODO: handle case where the whole page was deleted
     int del_index = search(d, val);
-    if(del_index == -1) {
+    if(del_index == MAGIC_NUMBER) {
         printf("Delete: ERROR, no such element found\n");
         return 1;
     }
