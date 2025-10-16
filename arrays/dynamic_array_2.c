@@ -2,7 +2,6 @@
 // An integer can occur a single time in the array
 
 #include <stdio.h>
-
 #include <stdlib.h>
 
 #define PAGE_SIZE 2
@@ -71,11 +70,6 @@ int insert(DynamicArray *d, int val)
 	return 0;
 }
 
-int empty_page_check()
-{
-    // TODO: complete this function to be used in the delete()
-}
-
 int delete(DynamicArray* d, int val)
 {
     // TODO: handle case where the whole page was deleted
@@ -84,8 +78,18 @@ int delete(DynamicArray* d, int val)
         printf("Delete: ERROR, no such element found\n");
         return 1;
     }
-
+    
     int *array = d->array;
+    
+    // Case where the whole page should be deleted
+    if(del_index == (d->page_number - 1) * PAGE_SIZE && d->page_number > 1) {
+        --(d->page_number);
+        int new_capacity = (d->page_number) * PAGE_SIZE;
+        d->array = realloc(array, sizeof(int) * new_capacity);
+        printf("Delete: %d was the last element on the page. Page %d is removed.\n", val, d->page_number);
+        return 0;
+    }
+
     array[del_index] = 0;
     for(int i = del_index; i < d->max_index; i++)
         array[i] = array[i+1];
@@ -107,6 +111,7 @@ int main(void)
     delete(&my_array, 100);
     delete(&my_array, 4);
     insert(&my_array, 3);
+    delete(&my_array, 3);
     return 0;
 }
 
