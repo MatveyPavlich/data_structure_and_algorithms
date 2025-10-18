@@ -34,9 +34,16 @@ DynamicArray init_array(void)
 
 int search(DynamicArray* d, int value)
 {
+        
         // MAGIC_NUMBER is returned on no match, else index of the match
+        if(d->max_index == -1) {
+                printf("Search: ERROR, array is empty\n");
+                return MAGIC_NUMBER;
+        }
+
 	int *array = d->array;
-	for(int i=0; i<=d->max_index; i++){
+
+        for(int i=0; i<=d->max_index; i++){
 		if(array[i] == value) return i;
 	}	
 	printf("Search: no match found for %d\n", value);
@@ -73,7 +80,6 @@ int insert(DynamicArray *d, int val)
 
 int delete(DynamicArray* d, int val)
 {
-        // TODO: clean up the code!
         int del_index = search(d, val);
         if(del_index == MAGIC_NUMBER) {
                 printf("Delete: ERROR, no such element found\n");
