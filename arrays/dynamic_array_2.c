@@ -73,9 +73,9 @@ int insert(DynamicArray *d, int val)
 	}
 
 	d->array[d->max_index + 1] = val;
-	++(d->max_index);
-	printf("Insert: %d on position %d\n", val, d->max_index);
-	return 0;
+        ++(d->max_index);
+        printf("Insert: %d on position %d\n", val, d->max_index);
+        return 0;
 }
 
 int delete(DynamicArray* d, int val)
@@ -92,12 +92,18 @@ int delete(DynamicArray* d, int val)
         if(del_index == (d->page_number - 1) * PAGE_SIZE && d->page_number > 1) {
                 --(d->page_number);
                 int new_capacity = (d->page_number) * PAGE_SIZE;
-                d->array = realloc(array, sizeof(int) * new_capacity);
+
+                int *new_array = realloc(array, sizeof(int) * new_capacity);
+                if(!new_array) {
+                        perror("Delete: Realloc failed\n");
+                        abort();
+                }
+                d->array = new_array; 
                 printf("Delete: %d was the last element on the page. Page %d is removed.\n", val, d->page_number);
                 return 0;
         }
 
-        array[del_index] = 0;
+        array[del_index] = MAGIC_NUMBER;
         for(int i = del_index; i < d->max_index; i++)
                 array[i] = array[i+1];
     
