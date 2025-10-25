@@ -17,14 +17,15 @@ main:
 	# gcc -std=c99 -Wall -Werror ./bitwise_operations/bitwise_operations.c -o ./$(BUILD_DIR)/bitwise_operations -g
 	# gcc -std=c99 -Wall -Werror ./queue/queue_v2.c -o ./$(BUILD_DIR)/queue_v2 -g
 	# gcc -std=c99 -Wall -Werror ./trees/bsa_try_2.c -o ./$(BUILD_DIR)/bsa_try_2
-	gcc -std=c99 -Wall -Werror ./arrays/dynamic_array_2.c -o ./$(BUILD_DIR)/dynamic_array_2
+	# gcc -std=c99 -Wall -Werror ./arrays/dynamic_array_2.c -o ./$(BUILD_DIR)/dynamic_array_2
+	gcc -std=c99 -Wall -Werror ./hash_table/hash_table_1.c -o ./$(BUILD_DIR)/hash_table_1
 
 
 clean:
 	rm -rf $(BUILD_DIR)/*
 
 run:
-	$(BUILD_DIR)/dynamic_array_2
+	$(BUILD_DIR)/hash_table_1
 
 debug:
 	@gdb -q \
