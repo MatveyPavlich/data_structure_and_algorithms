@@ -19,12 +19,13 @@ main:
 	# gcc -std=c99 -Wall -Werror ./trees/bsa_try_2.c -o ./$(BUILD_DIR)/bsa_try_2
 	# gcc -std=c99 -Wall -Werror ./arrays/dynamic_array_2.c -o ./$(BUILD_DIR)/dynamic_array_2
 	# gcc -std=c99 -Wall -Werror ./hash_table/hash_table_1.c -o ./$(BUILD_DIR)/hash_table_1
-	gcc -std=c99 -Wall -Werror ./codeforces/4A_waterlemon.c -o ./$(BUILD_DIR)/4A_waterlemon
+	# gcc -std=c99 -Wall -Werror ./codeforces/4A_waterlemon.c -o ./$(BUILD_DIR)/4A_waterlemon
+	gcc -std=c99 -Wall -Werror ./codeforces/71A_way_too_long_words.c -o ./$(BUILD_DIR)/71A_way_too_long_words
 clean:
 	rm -rf $(BUILD_DIR)/*
 
 run:
-	$(BUILD_DIR)/4A_waterlemon
+	$(BUILD_DIR)/71A_way_too_long_words
 
 debug:
 	@gdb -q \
