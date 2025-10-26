@@ -18,14 +18,13 @@ main:
 	# gcc -std=c99 -Wall -Werror ./queue/queue_v2.c -o ./$(BUILD_DIR)/queue_v2 -g
 	# gcc -std=c99 -Wall -Werror ./trees/bsa_try_2.c -o ./$(BUILD_DIR)/bsa_try_2
 	# gcc -std=c99 -Wall -Werror ./arrays/dynamic_array_2.c -o ./$(BUILD_DIR)/dynamic_array_2
-	gcc -std=c99 -Wall -Werror ./hash_table/hash_table_1.c -o ./$(BUILD_DIR)/hash_table_1
-
-
+	# gcc -std=c99 -Wall -Werror ./hash_table/hash_table_1.c -o ./$(BUILD_DIR)/hash_table_1
+	gcc -std=c99 -Wall -Werror ./codeforces/4A_waterlemon.c -o ./$(BUILD_DIR)/4A_waterlemon
 clean:
 	rm -rf $(BUILD_DIR)/*
 
 run:
-	$(BUILD_DIR)/hash_table_1
+	$(BUILD_DIR)/4A_waterlemon
 
 debug:
 	@gdb -q \
