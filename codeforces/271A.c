@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 int main(void) {
         int y;
@@ -19,3 +18,21 @@ int main(void) {
         printf("%d\n", y);
         return 0;
 }
+
+/*
+   // GPT solution
+        int y;
+        scanf("%d", &y);
+
+        while (1) {
+                y++;    
+                int o = y % 10;           // ones
+                int t = (y / 10) % 10;    // tens
+                int h = (y / 100) % 10;   // hundreds
+                int th = (y / 1000) % 10; // thousands  
+                if (o != t && o != h && o != th &&
+                t != h && t != th &&
+                h != th)
+                break;
+        }
+*/
