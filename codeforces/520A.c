@@ -4,23 +4,22 @@
 int main(void) {
         int n;
         scanf("%d", &n);
-        char s[n];
+        char s[n + 1];
         scanf("%s", s);
 
-        char alphabet[25];
+        char alphabet[26] = {0};
 
         for (int i = 0; i < n; i++) {
-                s[i] = toupper(s[i]);
-                printf("%d\n", (int)(s[i] - 65));
-                fflush(stdout);
-                alphabet[(s[i] - 65)] = 1;
+                char c = toupper((unsigned char)s[i]);
+                if (c >= 'A' && c <= 'Z')
+                        alphabet[c - 'A'] = 1;
         }
 
         int count = 0;
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 26; i++)
                 count += alphabet[i];
 
-        if (count == 25)
+        if (count == 26)
                 printf("YES\n");
         else
                 printf("NO\n");
