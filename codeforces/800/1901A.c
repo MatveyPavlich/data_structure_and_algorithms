@@ -15,15 +15,12 @@ int main(void) {
                 int max_dist = 0;
                 for (int j = 0; j < n + 1; j++) {
                         int dist = stations[j+1] - stations[j];
-                        // printf("Dist: %d\n", dist);
-                        fflush(stdout);
                         if (j == n)
                                 dist *= 2;
                         if (max_dist < dist)
                                 max_dist = dist;
                 }
 
-                // printf("Max dist: %d\n", max_dist);
                 output[i] = max_dist;
         }
 
