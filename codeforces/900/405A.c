@@ -17,23 +17,21 @@ int main(void) {
                 if (box[i] > max) max = box[i];
 
         int grid[max][n];
-        for (int i = 0; i < n; i++) {
-                int col = box[i];
-                for (int j = 0; j < max; j++) {
-                        if (col > 0) grid[i][j] = 1;
-                        else grid[i][j] = 0;
-                }
+        for (int col = 0; col < n; col++) {
+                int height = box[col];
+                for (int row = 0; row < max; row++)
+                        grid[row][col] = (row < height ? 1 : 0);
         }
         
-        for (int i = 0; i < max; i++) {
-                for (int j = 0; j <= n; j++) {
-                        if (j == n) printf("\n");
-                        else if (grid[j][i] == 1) printf("x ");
+        for (int row = 0; row < max; row++) {
+                for (int col = 0; col <= n; col++) {
+                        if (grid[row][col] == 1) printf("x ");
                         else printf("0 ");
                 }
+                printf("\n");
         }
 
-        printf("Max: %d\n", max);
+        // printf("Max: %d\n", max);
         // for (int j = n - 1; j >= 0 ; j--) {
         //         if (box[j] < box[j-1])
         //                 box[j]++;
