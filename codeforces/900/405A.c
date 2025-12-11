@@ -25,8 +25,8 @@ int main(void) {
         
         for (int row = 0; row < max; row++) {
                 for (int col = 0; col <= n; col++) {
-                        if (grid[row][col] == 1) printf("x ");
-                        else printf("0 ");
+                        if (grid[row][col] == 1) printf("X ");
+                        else printf(". ");
                 }
                 printf("\n");
         }
