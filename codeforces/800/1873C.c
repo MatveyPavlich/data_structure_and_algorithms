@@ -1,16 +1,16 @@
 #include <stdio.h>
 
 int main(void) {
-        int t;
-        scanf("%d", &t);
+        // int t;
+        // scanf("%d", &t);
 
-        char grid[3][3];
-        for (int i = 0; i < t; i++) {
-                for (int row = 0; row < 3; row++)
-                        scanf("%3s", grid[row]);
-        }
+        char grid[10][11];
+        for (int row = 0; row < 10; row++)
+                scanf("%s", grid[row]);
+        // for (int i = 0; i < t; i++) {
+        // }
 
-        for (int row = 0; row < 3; row++)
+        for (int row = 0; row < 10; row++)
                 printf("%s\n", grid[row]);
         return 0;
 }
