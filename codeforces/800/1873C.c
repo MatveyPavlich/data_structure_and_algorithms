@@ -1,62 +1,39 @@
 #include <stdio.h>
 
-int main(void) {
-        // int t;
-        // scanf("%d", &t);
-
-        char grid[10][11];
-        for (int row = 0; row < 10; row++)
-                scanf("%s", grid[row]);
-        // for (int i = 0; i < t; i++) {
-        // }
-
-        for (int row = 0; row < 10; row++)
-                printf("%s\n", grid[row]);
-        return 0;
+// Bubble sort
+void sort(int arr[], int size) {
+        for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size - 1; j++) {
+                        if (arr[j] > arr[j+1]) {
+                                int temp = arr[j];
+                                arr[j] = arr[j+1];
+                                arr[j+1] = temp;
+                        }
+                }
+        }
 }
 
-
-/*
 int main(void) {
         int t;
         scanf("%d", &t);
-
-        int results[t];
-
-        for (int tc = 0; tc < t; tc++) {
+        int output[t];
+        for (int i = 0; i < t; i++) {
                 char grid[10][11];
-
+                int score = 0;
                 for (int row = 0; row < 10; row++) {
                         scanf("%10s", grid[row]);
-                }
-
-                int score = 0;
-
-                for (int r = 0; r < 10; r++) {
-                        for (int c = 0; c < 10; c++) {
-                                if (grid[r][c] == 'X') {
-                                        int d1 = r;
-                                        int d2 = c;
-                                        int d3 = 9 - r;
-                                        int d4 = 9 - c;
-
-                                        int min = d1;
-                                        if (d2 < min) min = d2;
-                                        if (d3 < min) min = d3;
-                                        if (d4 < min) min = d4;
-
-                                        int ring = min + 1;  // 1..5
-                                        score += ring;
+                        for (int col = 0; col < 10; col++) {
+                                if (grid[row][col] == 'X') {
+                                        int distances[4] = {row, col, (9 - row), (9 - col)};
+                                        sort(distances, 4);
+                                        score += distances[0] + 1;
                                 }
                         }
                 }
-
-                results[tc] = score;
+                output[i] = score;
         }
 
         for (int i = 0; i < t; i++)
-                printf("%d\n", results[i]);
-
+                printf("%d\n", output[i]);
         return 0;
 }
-*/
