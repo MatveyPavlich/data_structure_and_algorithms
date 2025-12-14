@@ -16,7 +16,7 @@ int main(void) {
         for (int i = 1; i < n; i++)
                 if (cols[i] > max) max = cols[i];
 
-        int rows[max][n+1];
+        int rows[max][n];
         for (int row = 0; row < max; row++) {
                 for (int col = 0; col < n; col++) {
                         if (cols[col] > row)
@@ -30,26 +30,37 @@ int main(void) {
 
         for (int row = 0; row < max; row++) {
                 int *crnt_rw = rows[row];
-                for (int col = n; col > 0; col--) {
-                        int crnt_cl = rows[row][col];
-                        if (crnt_cl == 0) {
+                for (int col = n - 1; col > 0; col--) {
+                        if (crnt_rw[col] == 0) {
                                 int adj_col = col - 1;
                                 while (adj_col >= 0 && crnt_rw[adj_col] == 0)
                                         adj_col--;
-                                if (crnt_rw[adj_col] == 1) {
+                                if (adj_col >= 0 && crnt_rw[adj_col] == 1) {
                                         rows[row][col] = 1;
                                         crnt_rw[adj_col] = 0;
                                 }
                         }
                 }
         }
-
-        // Debugging
+        /*
+        // Visualising a new grid with a different gravity 
         for (int i = max - 1; i >= 0; i--) {
-                for (int j = 0; j < n; j++)
-                        printf("%d ", rows[i][j]);
-                printf("\n");
+        for (int j = 0; j < n; j++)
+        printf("%d ", rows[i][j]);
+        printf("\n");
         }
+        */
+
+        int output[n];
+        for (int col = 0; col < n; col++) {
+                output[col] = 0;
+                for (int row = 0; row < max; row++)
+                       if (rows[row][col] == 1)
+                               output[col]++;
+        }
+
+        for (int i = 0; i < n; i++) printf("%d ", output[i]);
+        printf("\n");
 
         return 0;
 }
