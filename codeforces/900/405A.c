@@ -3,7 +3,7 @@
 /* Algorithm:
  * Step 1: Find a gap by traversing to the left from first row
  * Step 2: See if there is a block on the same row. If yes, fill the gap
-*/
+ */
 
 int main(void) {
         int n;
@@ -11,7 +11,7 @@ int main(void) {
         int cols[n];
         for (int i = 0; i < n; i++)
                 scanf("%d", &cols[i]);
-        
+
         int max = cols[0];
         for (int i = 1; i < n; i++)
                 if (cols[i] > max) max = cols[i];
@@ -28,11 +28,28 @@ int main(void) {
                 // printf("\n");
         }
 
+        for (int row = 0; row < max; row++) {
+                int *crnt_rw = rows[row];
+                for (int col = n; col > 0; col--) {
+                        int crnt_cl = rows[row][col];
+                        if (crnt_cl == 0) {
+                                int adj_col = col - 1;
+                                while (adj_col >= 0 && crnt_rw[adj_col] == 0)
+                                        adj_col--;
+                                if (crnt_rw[adj_col] == 1) {
+                                        rows[row][col] = 1;
+                                        crnt_rw[adj_col] = 0;
+                                }
+                        }
+                }
+        }
+
+        // Debugging
         for (int i = max - 1; i >= 0; i--) {
                 for (int j = 0; j < n; j++)
                         printf("%d ", rows[i][j]);
                 printf("\n");
         }
-        
+
         return 0;
 }
