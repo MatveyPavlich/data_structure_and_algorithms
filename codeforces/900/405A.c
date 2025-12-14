@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 /* Algorithm:
+ * Step 0: Convert columns into rows
  * Step 1: Find a gap by traversing to the left from first row
  * Step 2: See if there is a block on the same row. If yes, fill the gap
  */
@@ -16,6 +17,7 @@ int main(void) {
         for (int i = 1; i < n; i++)
                 if (cols[i] > max) max = cols[i];
 
+        // Find the tallest column (i.e., maximum rows)
         int rows[max][n];
         for (int row = 0; row < max; row++) {
                 for (int col = 0; col < n; col++) {
@@ -23,11 +25,10 @@ int main(void) {
                                 rows[row][col] = 1;
                         else
                                 rows[row][col] = 0;
-                        // printf("%d ", rows[row][col]);
                 }
-                // printf("\n");
         }
 
+        // Convert columns into rows
         for (int row = 0; row < max; row++) {
                 int *crnt_rw = rows[row];
                 for (int col = n - 1; col > 0; col--) {
@@ -42,6 +43,7 @@ int main(void) {
                         }
                 }
         }
+
         /*
         // Visualising a new grid with a different gravity 
         for (int i = max - 1; i >= 0; i--) {
@@ -51,6 +53,7 @@ int main(void) {
         }
         */
 
+        // Create an array to print
         int output[n];
         for (int col = 0; col < n; col++) {
                 output[col] = 0;
@@ -59,6 +62,7 @@ int main(void) {
                                output[col]++;
         }
 
+        // Output the result
         for (int i = 0; i < n; i++) printf("%d ", output[i]);
         printf("\n");
 
