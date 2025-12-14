@@ -8,40 +8,31 @@
 int main(void) {
         int n;
         scanf("%d", &n);
-        int box[n];
+        int cols[n];
         for (int i = 0; i < n; i++)
-                scanf("%d", &box[i]);
+                scanf("%d", &cols[i]);
         
-        int max = box[0];
+        int max = cols[0];
         for (int i = 1; i < n; i++)
-                if (box[i] > max) max = box[i];
+                if (cols[i] > max) max = cols[i];
 
-        int grid[max][n];
-        for (int col = 0; col < n; col++) {
-                int height = box[col];
-                for (int row = 0; row < max; row++)
-                        grid[row][col] = (row < height ? 1 : 0);
-        }
-        
+        int rows[max][n+1];
         for (int row = 0; row < max; row++) {
-                for (int col = 0; col <= n; col++) {
-                        if (grid[row][col] == 1) printf("X ");
-                        else printf(". ");
+                for (int col = 0; col < n; col++) {
+                        if (cols[col] > row)
+                                rows[row][col] = 1;
+                        else
+                                rows[row][col] = 0;
+                        // printf("%d ", rows[row][col]);
                 }
+                // printf("\n");
+        }
+
+        for (int i = max - 1; i >= 0; i--) {
+                for (int j = 0; j < n; j++)
+                        printf("%d ", rows[i][j]);
                 printf("\n");
         }
-
-        // printf("Max: %d\n", max);
-        // for (int j = n - 1; j >= 0 ; j--) {
-        //         if (box[j] < box[j-1])
-        //                 box[j]++;
-        // }
-
-        for (int i = 0; i < n; i++) {
-                if (i == n - 1)
-                        printf("%d\n", box[i]);
-                else
-                        printf("%d ", box[i]);
-        }
+        
         return 0;
 }
