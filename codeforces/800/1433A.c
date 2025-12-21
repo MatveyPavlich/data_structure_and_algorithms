@@ -13,8 +13,9 @@ int main(void)
         for (int flat = 0; flat < 9*4; flat++) {
                 dials[flat] = (flat % 4) + 1;
                 // dials[flat] = (flat / 4) + (flat % 4);
-                printf("Flat %d (%d) score: %d\n", flats[flat], flat, dials[flat]);
+                // printf("Flat %d (%d) score: %d\n", flats[flat], flat, dials[flat]);
         }
+
         // Read input
         int t;
         scanf("%d", &t);
@@ -24,7 +25,7 @@ int main(void)
                 int flat_pos = 0;
                 while (flats[flat_pos] != x) flat_pos++;
                 int ttl_dials = 0;
-                for (int i = 0; i < flat_pos; i++) ttl_dials += dials[i];
+                for (int i = 0; i <= flat_pos; i++) ttl_dials += dials[i];
                 printf("%d\n", ttl_dials);
                 // printf("flat_pos: %d\n", flat_pos);
                 // printf("%d\n", flats[flat_pos]);
