@@ -8,14 +8,17 @@ int main(void)
         while (t--) {
                 char s[101];
                 scanf("%s", s);
-                long len = strlen(s);
-                int count = 0;
+                int len = strlen(s);
                 if (len % 2 != 0) printf("NO\n");
                 else {
-                        long len_half = len / 2;
+                        int len_half = len / 2;
+                        int ok = 1;
                         for (int i = 0; i < len_half; i++)
-                                if (s[i] == s[i+len_half]) count++;
-                        printf("%s\n", count == len_half ? "YES" : "NO");
+                                if (s[i] != s[i+len_half]) {
+                                        ok = 0;
+                                        break;
+                                };
+                        printf("%s\n", ok == 1 ? "YES" : "NO");
                 }
         }
 
