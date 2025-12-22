@@ -1,3 +1,4 @@
+// TODO: revisit since solution is over engineered
 #include <stdio.h>
 #define FLOORS 9 
 #define ROOMS 4 
