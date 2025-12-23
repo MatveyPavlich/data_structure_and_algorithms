@@ -7,9 +7,6 @@ int main(void)
         int n;
         while (t--) {
                 scanf("%d", &n);
-                // Either *2 or / 2 /3
-                // A number needs
-                //
                 int twos = 0;
                 int threes = 0;
                 int temp = n;
@@ -23,7 +20,11 @@ int main(void)
                                 temp /= 3;
                         }
                 }
-                // printf("Num %d (remainder = %d): 2^(%d), 3^(%d)\n", n, temp, twos, threes);
+                // // Debugging
+                // printf("Num %d (rem = %d): 2^(%d), 3^(%d)\n", n,
+                //                                               temp,
+                //                                               twos,
+                //                                               threes);
 
                 if (n == 1)                         printf("%d\n", 0);
                 else if ((twos == 0 && threes == 0)
