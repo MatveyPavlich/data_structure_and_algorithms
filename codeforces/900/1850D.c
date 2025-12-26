@@ -10,6 +10,7 @@ int cmp(const void *a, const void *b) {
         return (x > y) - (x < y);
 }
 
+// Bubble sort is O(n^2) => will never pass at this array length in codeforces
 // void sort(int arr[], int len)
 // {
 //         for (int i = 0; i < len - 1; i++) {
@@ -34,7 +35,6 @@ int main(void)
         for (int i = 0; i < t; i++) {
                 scanf("%d %lld", &n, &k);
                 for (int j = 0; j < n; j++) scanf("%d", &arr[j]);
-                // sort(arr, n);
                 qsort(arr, n, sizeof(int), cmp);
                 int max = 1;
                 int curr = 1;
@@ -44,9 +44,6 @@ int main(void)
                         if (curr > max) max = curr;
                 }
                 out[i] = n - max;
-                // printf("Ans: %d. Arr: ", out[i]);
-                // for (int j = 0; j < n; j++) printf("%d ", arr[j]);
-                // printf("\n");
         }
 
         for (int i = 0; i < t; i++) printf("%d\n", out[i]);
