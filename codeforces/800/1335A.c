@@ -16,3 +16,5 @@ int main(void)
         }
         return 0;
 }
+
+/* You could also do just (n - 1) / 2 to use integer division */
