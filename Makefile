@@ -22,7 +22,7 @@ main:
 	# gcc -std=c99 -Wall -Werror ./codeforces/4A_waterlemon.c -o ./$(BUILD_DIR)/4A_waterlemon
 	# gcc -std=c99 -Wall -Werror ./codeforces/71A_way_too_long_words.c -o ./$(BUILD_DIR)/71A_way_too_long_words
 	# gcc -std=c99 -Wall -Werror ./codeforces/4A_try_2.c -o ./$(BUILD_DIR)/output
-	gcc -std=c99 -Wall -Werror ./codeforces/800/1873A.c -o ./$(BUILD_DIR)/output -lm
+	gcc -std=c99 -Wall -Werror ./codeforces/800/9A.c -o ./$(BUILD_DIR)/output -lm
 clean:
 	rm -rf $(BUILD_DIR)/*
 
