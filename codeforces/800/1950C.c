@@ -22,3 +22,26 @@ int main(void)
         }
         return 0;
 }
+
+/* GPTs solution:
+int main(void)
+{
+        int t;
+        scanf("%d", &t);
+
+        char s[6];
+        while (t--) {
+                scanf("%s", s);
+
+                int h24 = (s[0] - '0') * 10 + (s[1] - '0');
+                int h12 = h24 % 12;
+                if (h12 == 0) h12 = 12;
+
+                printf("%02d:%c%c %s\n",
+                                h12,
+                                s[3], s[4],
+                                h24 < 12 ? "AM" : "PM");
+        }
+        return 0;
+}
+*/
