@@ -7,28 +7,13 @@ int main(void)
         scanf("%d", &t);
         while (t--) {
                 scanf("%lld %lld %lld %lld", &m, &a, &b, &c);
-                long long seated = 0, first = m, second = m;
-                if (a <= m) {
-                        seated += a;
-                        first -= a;
-                }
-                else {
-                        seated += m;
-                        first = 0;
-                }
+                long long row1 = a < m ? a : m;
+                long long row2 = b < m ? b : m;
 
-                if (b <= m) {
-                        seated += b;
-                        second -= b;
-                }
-                else {
-                        seated += m;
-                        second = 0;
-                }
+                long long remaining = 2*m - row1 - row2;
+                long long flex = c < remaining ? c : remaining;
 
-                if (first + second > 0)
-                        seated += (first + second) >= c ? c : (first + second);
-                printf("%lld\n", seated);
+                printf("%lld\n", row1 + row2 + flex);
         }
         return 0;
 }
